@@ -1179,20 +1179,20 @@ with gr.Blocks(title="RVC WebUI") as app:
                 sr2 = gr.Radio(
                     label=i18n("目标采样率"),
                     choices=["40k", "48k"],
-                    value="40k",
-                    interactive=True,
+                    value="48k",
+                    interactive=False,
                 )
                 if_f0_3 = gr.Radio(
                     label=i18n("模型是否带音高指导(唱歌一定要, 语音可以不要)"),
                     choices=[i18n("是"), i18n("否")],
                     value=i18n("是"),
-                    interactive=True,
+                    interactive=False,
                 )
                 version19 = gr.Radio(
                     label=i18n("版本"),
                     choices=["v1", "v2"],
                     value="v2",
-                    interactive=True,
+                    interactive=False,
                     visible=True,
                 )
                 np7 = gr.Slider(
@@ -1201,7 +1201,7 @@ with gr.Blocks(title="RVC WebUI") as app:
                     step=1,
                     label=i18n("提取音高和处理数据使用的CPU进程数"),
                     value=int(np.ceil(config.n_cpu / 1.5)),
-                    interactive=True,
+                    interactive=False,
                 )
             with gr.Group():  # 暂时单人的, 后面支持最多4人的#数据处理
                 gr.Markdown(
@@ -1220,7 +1220,7 @@ with gr.Blocks(title="RVC WebUI") as app:
                         step=1,
                         label=i18n("请指定说话人id"),
                         value=0,
-                        interactive=True,
+                        interactive=False,
                     )
                     but1 = gr.Button(i18n("处理数据"), variant="primary")
                     info1 = gr.Textbox(label=i18n("输出信息"), value="")
@@ -1243,7 +1243,7 @@ with gr.Blocks(title="RVC WebUI") as app:
                                 "以-分隔输入使用的卡号, 例如   0-1-2   使用卡0和卡1和卡2"
                             ),
                             value=gpus,
-                            interactive=True,
+                            interactive=False,
                             visible=F0GPUVisible,
                         )
                         gpu_info9 = gr.Textbox(
@@ -1256,7 +1256,7 @@ with gr.Blocks(title="RVC WebUI") as app:
                             ),
                             choices=["pm", "harvest", "dio", "rmvpe", "rmvpe_gpu"],
                             value="rmvpe_gpu",
-                            interactive=True,
+                            interactive=False,
                         )
                         gpus_rmvpe = gr.Textbox(
                             label=i18n(
@@ -1295,7 +1295,7 @@ with gr.Blocks(title="RVC WebUI") as app:
                         maximum=50,
                         step=1,
                         label=i18n("保存频率save_every_epoch"),
-                        value=5,
+                        value=10,
                         interactive=True,
                     )
                     total_epoch11 = gr.Slider(
@@ -1303,7 +1303,7 @@ with gr.Blocks(title="RVC WebUI") as app:
                         maximum=1000,
                         step=1,
                         label=i18n("总训练轮数total_epoch"),
-                        value=20,
+                        value=200,
                         interactive=True,
                     )
                     batch_size12 = gr.Slider(
@@ -1317,8 +1317,8 @@ with gr.Blocks(title="RVC WebUI") as app:
                     if_save_latest13 = gr.Radio(
                         label=i18n("是否仅保存最新的ckpt文件以节省硬盘空间"),
                         choices=[i18n("是"), i18n("否")],
-                        value=i18n("否"),
-                        interactive=True,
+                        value=i18n("是"),
+                        interactive=False,
                     )
                     if_cache_gpu17 = gr.Radio(
                         label=i18n(
@@ -1326,15 +1326,15 @@ with gr.Blocks(title="RVC WebUI") as app:
                         ),
                         choices=[i18n("是"), i18n("否")],
                         value=i18n("否"),
-                        interactive=True,
+                        interactive=False,
                     )
                     if_save_every_weights18 = gr.Radio(
                         label=i18n(
                             "是否在每次保存时间点将最终小模型保存至weights文件夹"
                         ),
                         choices=[i18n("是"), i18n("否")],
-                        value=i18n("否"),
-                        interactive=True,
+                        value=i18n("是"),
+                        interactive=False,
                     )
                 with gr.Row():
                     pretrained_G14 = gr.Textbox(
